@@ -7,7 +7,7 @@ class App {
     this.app = express();
 
     this.config();
-
+    // this.routes();
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
   }
@@ -23,6 +23,8 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
   }
+
+  // private routes(): void {}
 
   public start(PORT: string | number):void {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
