@@ -9,11 +9,6 @@ chai.use(chaiHttp);
 const { expect } = chai;
 const { app } = new App();
 
-// email obrigatório:
-// email válido:
-// a senha seja obrigatória
-// a senha seja válida
-
 describe('POST /login', () => {
     describe('quando a requisição não possui um e-mail válido ', () => {
         it('deve retornar o status 400 com uma mensagem de erro', async () => {
@@ -48,4 +43,27 @@ describe('POST /login', () => {
             expect(httpResponse.status).to.equal(200);
         })
         })
+    describe('quando a requisição possui um email ou senha inválidos', () => {
+        it('deve retornar o status 400 com uma mensagem de erro', async () => {
+            const httpResponse = await chai
+            .request(app)
+            .post('/login')
+            .send({ "email": "string", "password": "string" })
+    
+                expect(httpResponse.status).to.equal(401);
+                expect(httpResponse.body).to.deep.equal( { "message": "Incorrect email or password" })
+            })
+        }) 
+    describe('rota GET /login/validate sem um token', () => {
+        it('deve retornar o status 401 com uma mensagem de erro', async () => {
+            const httpResponse = await chai
+            .request(app)
+            .get('/login/validate')
+            .set({});
+        
+                expect(httpResponse.status).to.equal(401);
+                expect(httpResponse.body).to.deep.equal( { "message": "Incorrect email or password" })
+                })
+            }) 
+                
     })

@@ -14,7 +14,7 @@ export default class UserService {
 
     const user = await UserModel.findOne({ where: { email } });
 
-    if (!user) throw new Error('Incorrect email or password');
+    if (!user) throw new Error(401, 'Incorrect email or password');
 
     const comparePassword = compareSync(password, user.password);
 
