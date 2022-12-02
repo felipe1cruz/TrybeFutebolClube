@@ -13,4 +13,13 @@ export default class TokenManager {
     const token = jwt.sign({ data: payload }, secret, jwtConfig);
     return token;
   };
+
+  static validateToken = (authorization: string): jwt.JwtPayload => {
+    console.log('secret', secret);
+    console.log('token', authorization);
+    const verify = jwt.verify(authorization, secret);
+    console.log('retorno verificacao', verify);
+
+    return verify as jwt.JwtPayload;
+  };
 }

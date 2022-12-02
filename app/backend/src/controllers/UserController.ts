@@ -15,4 +15,17 @@ export default class UserController {
       next(error);
     }
   }
+
+  async validateLogin(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { authorization } = req.headers;
+      console.log(authorization);
+
+      const user = await this.userService.validateLogin(authorization);
+      const role = user?.role || null;
+      return res.status(200).json({ role });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
