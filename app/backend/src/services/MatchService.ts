@@ -4,26 +4,36 @@ import MatchesModel from '../database/models/MatchesModel';
 // import IMatch from '../interfaces/IMatch';
 
 export default class MatchService {
-  getAllMatches = async (inProgress: string | undefined) => {
-    if (inProgress === 'true') {
-      const matches = await MatchesModel.findAll({
-        include: [
-          { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
-          { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
-        ],
-        where: { inProgress: true },
-      });
-      return matches;
-    }
+  getMatchesInProgress = async () => {
+    const matches = await MatchesModel.findAll({
+      include: [
+        { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
+        { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
+      ],
+      where: { inProgress: true },
+    });
+    return matches;
+  };
 
+  getAllMatches = async () => {
     const matches = await MatchesModel.findAll({
       include: [
         { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
         { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
       ],
     });
-    console.log(matches);
 
+    return matches;
+  };
+
+  getFinishedMatches = async () => {
+    const matches = await MatchesModel.findAll({
+      include: [
+        { model: TeamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
+        { model: TeamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
+      ],
+      where: { inProgress: false },
+    });
     return matches;
   };
 

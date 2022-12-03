@@ -9,7 +9,17 @@ export default class MatchController {
   async getAllMatches(req: Request, res: Response, next: NextFunction) {
     try {
       const { inProgress } = req.query;
-      const matches = await this.matchService.getAllMatches(inProgress as string);
+      if (inProgress === 'true') {
+        const matches = await this.matchService.getAllMatches();
+        return res.status(200).json(matches);
+      }
+
+      if (inProgress === 'false') {
+        const matches = await this.matchService.getFinishedMatches();
+        return res.status(200).json(matches);
+      }
+
+      const matches = await this.matchService.getAllMatches();
       return res.status(200).json(matches);
     } catch (error) {
       next(error);
