@@ -1,13 +1,14 @@
 import { INTEGER, BOOLEAN, Model } from 'sequelize';
 import db from '.';
-import TeamsModel from './TeamsModel';
+// import TeamsModel from './TeamsModel';
 
 class MatchesModel extends Model {
   declare id: number;
-  declare username: string;
-  declare role: string;
-  declare email: string;
-  declare password: string;
+  declare homeTeam: string;
+  declare homeTeamGoals: string;
+  declare awayTeam: string;
+  declare awayTeamGoals: string;
+  declare inProgress: boolean;
 }
 
 MatchesModel.init({
@@ -38,14 +39,9 @@ MatchesModel.init({
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'users',
+  modelName: 'matches',
+  tableName: 'matches',
   timestamps: false,
 });
-
-TeamsModel.hasMany(MatchesModel, { foreignKey: 'homeTeam', as: 'homeTeamMatches' });
-TeamsModel.hasMany(MatchesModel, { foreignKey: 'awayTeam', as: 'awayTeamMatches' });
-
-MatchesModel.belongsTo(TeamsModel, { foreignKey: 'homeTeam', as: 'homeTeamMatches' });
-MatchesModel.belongsTo(TeamsModel, { foreignKey: 'awayTeam', as: 'awayTeamMatches' });
 
 export default MatchesModel;
