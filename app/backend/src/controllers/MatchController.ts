@@ -44,4 +44,21 @@ export default class MatchController {
       next(error);
     }
   }
+
+  async changeMatch(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { authorization } = req.headers;
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+      await this.userService.validateLogin(authorization);
+      const match = await this.matchService.changeMatch(
+        Number(id),
+        homeTeamGoals,
+        awayTeamGoals,
+      );
+      return res.status(200).json(match);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

@@ -69,4 +69,20 @@ export default class MatchService {
     console.log(insertMatch);
     return insertMatch;
   };
+
+  changeMatch = async (
+    id: number,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  ) => {
+    const change = await MatchesModel.update(
+      {
+        homeTeamGoals,
+        awayTeamGoals,
+      },
+      { where: { id } },
+    );
+    console.log(change);
+    return change;
+  };
 }
