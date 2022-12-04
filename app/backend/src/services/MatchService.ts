@@ -85,4 +85,13 @@ export default class MatchService {
     console.log(change);
     return change;
   };
+
+  changeProgressMatch = async (id: number) => {
+    await MatchesModel.update(
+      {
+        inProgress: false,
+      },
+      { where: { id } },
+    );
+  };
 }

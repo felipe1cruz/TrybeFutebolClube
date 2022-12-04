@@ -15,6 +15,10 @@ router.get('/login/validate', (req, res, next) => userController.validateLogin(r
 router.get('/teams/:id', (req, res, next) => teamController.getIdTeam(req, res, next));
 router.get('/teams', (req, res, next) => teamController.getAllTeams(req, res, next));
 
+router.patch(
+  '/matches/:id/finish',
+  (req, res, next) => matchController.changeProgressMatch(req, res, next),
+);
 router.patch('/matches/:id', (req, res, next) => matchController.changeMatch(req, res, next));
 router.get('/matches', (req, res, next) => matchController.getAllMatches(req, res, next));
 router.post('/matches', (req, res, next) => matchController.InsertMatch(req, res, next));

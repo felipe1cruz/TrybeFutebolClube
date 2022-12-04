@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import ValidationError from '../errors/ValidationError';
 
 const secret = process.env.JWT_SECRET || 'jwt_secret';
 
@@ -15,11 +16,13 @@ export default class TokenManager {
   };
 
   static validateToken = (authorization: string): jwt.JwtPayload => {
-    console.log('secret', secret);
-    console.log('token', authorization);
-    const verify = jwt.verify(authorization, secret);
-    console.log('retorno verificacao', verify);
+    try {
+      const verify = jwt.verify(authorization, secret);
+      console.log('retorno verificacao', verify);
 
-    return verify as jwt.JwtPayload;
+      return verify as jwt.JwtPayload;
+    } catch (err) {
+      throw new ValidationError(401, 'Token must be a valid token');
+    }
   };
 }
