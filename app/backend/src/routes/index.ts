@@ -16,6 +16,6 @@ router.get('/teams/:id', (req, res, next) => teamController.getIdTeam(req, res, 
 router.get('/teams', (req, res, next) => teamController.getAllTeams(req, res, next));
 
 router.get('/matches', (req, res, next) => matchController.getAllMatches(req, res, next));
-router.post('/matches', (req, res, next) => matchController.changeMatches(req, res, next));
+router.post('/matches', (req, res, next) => matchController.InsertMatch(req, res, next));
 
 export default router;

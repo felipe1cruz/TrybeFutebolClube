@@ -28,12 +28,12 @@ export default class MatchController {
     }
   }
 
-  async changeMatches(req: Request, res: Response, next: NextFunction) {
+  async InsertMatch(req: Request, res: Response, next: NextFunction) {
     try {
       const { authorization } = req.headers;
       const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
       await this.userService.validateLogin(authorization);
-      const match = await this.matchService.changeMatches(
+      const match = await this.matchService.InsertMatch(
         homeTeam,
         awayTeam,
         homeTeamGoals,

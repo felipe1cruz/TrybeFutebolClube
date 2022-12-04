@@ -52,7 +52,7 @@ export default class MatchService {
     }
   };
 
-  changeMatches = async (
+  InsertMatch = async (
     homeTeam: number,
     awayTeam: number,
     homeTeamGoals: number,
