@@ -97,7 +97,7 @@ export default class LeaderboardService {
       totalGames: await (await this.games(homeAway, team.id)).length,
       totalVictories: await this.victorys(homeAway, team.id),
       totalDraws: await this.draws(homeAway, team.id),
-      totalLoses: await this.loses(homeAway, team.id),
+      totalLosses: await this.loses(homeAway, team.id),
       goalsFavor: await this.goals(homeAway, team.id),
       goalsOwn: await this.goalsOwn(homeAway, team.id),
       goalsBalance: await this.goals(homeAway, team.id) - await this.goalsOwn(homeAway, team.id),
