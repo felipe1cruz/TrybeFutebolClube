@@ -25,6 +25,8 @@ router.patch('/matches/:id', (req, res, next) => matchController.changeMatch(req
 router.get('/matches', (req, res, next) => matchController.getAllMatches(req, res, next));
 router.post('/matches', (req, res, next) => matchController.InsertMatch(req, res, next));
 
+router.get('/leaderboard', (req, res, next) =>
+  leaderboardController.homeTeamPosition(req, res, next));
 router.get('/leaderboard/home', (req, res, next) =>
   leaderboardController.homeTeamPosition(req, res, next));
 router.get('/leaderboard/away', (req, res, next) =>
