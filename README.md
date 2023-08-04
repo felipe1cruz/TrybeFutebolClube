@@ -27,7 +27,7 @@ Tecnologias Aplicadas por mim nesse projeto:
 ## Como executar a aplicação na sua máquina (com docker):
 - Certifique-se de ter o docker instalado com as versões 1.29 ou superior;
 - Clone o repositório;
-- Suba todos os containers (banco de dados, front-end, back-end) com o comando `npm run compose:up:dev`;
+- Suba todos os containers (banco de dados, front-end, back-end) com o comando `npm run compose:up`;
 - Sua aplicação está pronta! Acesse do seu navegador: `http://localhost:3000/`;                          
 
 
